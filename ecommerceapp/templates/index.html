@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+ <div class="container-fluid bg-primary text-white text-center py-2">
+    <p class="mb-0">🚨 Important Announcement: Free shipping on orders over $50! 🚨</p>
+  </div>
+
+ <div class="container">
+  
+    
+    <div class="row text-center d-flex justify-content-center mt-5">
+      
+      <div class="col-sm-3">
+        <a href="{% url 'listmoblie' %}">
+        <div class="card border border-dagnger">
+          
+            <div class="card-body ">
+                <i class="bi bi-phone text-primary"  style="font-size: 60px;"></i>
+                <h4> الهواتف الذكية </h4>
+            </div>
+        </div>
+      </div>
+    </a>
+      <div class="col-sm-3">
+        <a href="{% url 'listitems' %}">
+            <div class="card border border-dagnger">
+                <div class="card-body ">
+                    <i class="bi bi-person-arms-up text-primary"  style="font-size: 60px;"></i>
+                    <h4> قسم الملابس  </h4>
+                </div>
+            </div>       
+        </a>
+     
+      </div>
+      <div class="col-sm-3">
+        <a href="{% url 'listcomputer' %}">
+            <div class="card border border-dagnger">
+                <div class="card-body ">
+                    <i class="bi bi-laptop text-primary"  style="font-size: 60px;"></i>
+                    <h4> قسم الحاسب  </h4>
+                </div>
+            </div>       
+        </a>
+     
+      </div>
+      <div class="col-sm-3">
+        <a href="{% url 'listbook' %}">
+            <div class="card border border-info">
+                <div class="card-body ">
+                    <i class="bi bi-book text-primary"  style="font-size: 60px;"></i>
+                    <h4> قسم الكتب  </h4>
+                </div>
+            </div>       
+        </a>
+     
+      </div>
+    </div>
+    
+ </div>
+{% endblock content %}

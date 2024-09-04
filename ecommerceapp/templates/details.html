@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+          <div class="card-body p-0">
+            <div class="d-flex gap-5 p-5">
+              <div style="flex-basis: 60%;">
+                <img class="w-100 img-fluid rounded-3" src="{{ data.items.image.url }}" alt="">
+              </div>
+              <div style="flex-basis: 40%;">
+                <h2 class="mb-4">{{ data.items.nameitems }}</h2>
+                <h5 class="mb-3 fw-bold" id="price">{{data.items.price}}$</h5>
+                <div class="d-flex gap-2 w-25 mb-4">
+                  <button class="btn btn-primary px-2"
+                      onclick="changeQuantity(-1)">
+                      -
+                  </button>
+  
+                  <input id="form1" min="0" name="quantity" value="1" type="number"
+                          class="form-control form-control-sm" />
+  
+                  <button class="btn btn-primary px-2"
+                    onclick="changeQuantity(1)">
+                    +
+                  </button>
+                </div>
+                <h5>Color: <b>{{data.color}}</b></h5>
+                <div class="pt-3" style="background-">
+                  <div class="d-flex items-center gap-2">
+                    <a href="/" class="btn btn-primary btn-block btn-sm">
+                      <i class="fas fa-long-arrow-alt-left me-2"></i>
+                      Continue Shopping
+                    </a>
+                    <button id="add_to_cart" type="button" data-mdb-button-init data-mdb-ripple-init
+                      class="btn btn-danger btn-block btn-sm" data-mdb-ripple-color="danger">
+                      Add to Cart <i class="bi bi-bag-fill"></i>
+                    </button>
+                    <a href="{% url 'checkout' %}" data-mdb-button-init data-mdb-ripple-init
+                      class="btn btn-success btn-block btn-sm" data-mdb-ripple-color="dark">
+                      Checkout <i class="bi bi-credit-card-2-back"></i>
+                    </a>
+                  </div>
+
+                </div>
+                <hr>
+                <span>{{data.items.description}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  document.getElementById('add_to_cart').addEventListener('click', function() {
+    var quantity = document.getElementById('form1').value;
+    addtoacrt({{data.id}}, quantity);
+  });
+</script>
+
+
+<script>
+  const basePrice = "{{data.items.price}}";
+
+  function updatePrice() {
+      const quantity = parseInt(document.getElementById('form1').value, 10);
+      const totalPrice = basePrice * quantity;
+      document.getElementById('price').textContent = `${totalPrice}$`;
+  }
+
+  function changeQuantity(change) {
+      const input = document.getElementById('form1');
+      let quantity = parseInt(input.value, 10);
+      quantity += change;
+
+      if (quantity < 0) {
+          quantity = 0;
+      }
+
+      input.value = quantity;
+      updatePrice();
+  }
+
+  updatePrice();
+</script>
+
+{%endblock content%}
+
